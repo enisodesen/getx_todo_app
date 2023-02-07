@@ -6,5 +6,7 @@ class TaskController extends GetxController {
 
   void addTask() {}
 
-  void deleteTask(Task task) {}
+  void deleteTask(Task task) {
+    taskList.remove(task);
+  }
 }

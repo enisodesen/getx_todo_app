@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_todo_app/controller/task_controller.dart';
 import 'package:getx_todo_app/view/add_task_screen.dart';
+import 'package:getx_todo_app/view/task_tile.dart';
 
 class TodoPage extends StatelessWidget {
-  const TodoPage({super.key});
+  TodoPage({super.key});
+
+  final TaskController controller = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
     TextTheme text = Theme.of(context).textTheme;
+    var bodyWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: SafeArea(
-          child: Center(
-        child: Text(
-          'No Task Found',
-          style: text.headlineMedium,
+      body: ListView.builder(
+        itemCount: controller.taskList.length,
+        itemBuilder: (context, index) => TaskTile(
+          bodyWidth: bodyWidth,
+          text: text,
+          time: controller.taskList[index].taskCreated,
+          description: controller.taskList[index].task,
+          press: () {
+            controller.addTask();
+          },
         ),
-      )),
+      ),
       floatingActionButton: InkWell(
         onTap: () {
-          Get.to(const AddTaskPage());
+          Get.to(AddTaskPage());
         },
         child: Container(
           height: 50,

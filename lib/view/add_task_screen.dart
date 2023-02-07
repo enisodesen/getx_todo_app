@@ -1,7 +1,13 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_todo_app/controller/task_controller.dart';
 
 class AddTaskPage extends StatelessWidget {
-  const AddTaskPage({super.key});
+  AddTaskPage({super.key});
+
+  TaskController controller = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +32,7 @@ class AddTaskPage extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Colors.red,
-                    ),
+                    borderSide: const BorderSide(),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   filled: true,
