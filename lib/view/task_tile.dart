@@ -39,10 +39,11 @@ class TaskTile extends StatelessWidget {
             children: [
               Container(
                   height: double.maxFinite,
-                  width: bodyWidth * 0.1,
+                  width: bodyWidth * 0.15,
                   color: Colors.red,
                   child: Text(
                     time,
+                    textAlign: TextAlign.center,
                     style: text.headlineMedium!.copyWith(color: Colors.white),
                   )),
               Container(

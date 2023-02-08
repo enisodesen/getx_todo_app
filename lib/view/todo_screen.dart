@@ -15,17 +15,24 @@ class TodoPage extends StatelessWidget {
     var bodyWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: ListView.builder(
-        itemCount: controller.taskList.length,
-        itemBuilder: (context, index) => TaskTile(
-          bodyWidth: bodyWidth,
-          text: text,
-          time: controller.taskList[index].taskCreated,
-          description: controller.taskList[index].task,
-          press: () {
-            controller.addTask();
-          },
-        ),
+      body: Obx(
+        () => (controller.taskList.isEmpty)
+            ? const Center(
+                child: Text('No Tasks'),
+              )
+            : Center(
+                child: ListView.builder(
+                itemCount: controller.taskList.length,
+                itemBuilder: (context, index) => TaskTile(
+                  bodyWidth: bodyWidth,
+                  text: text,
+                  time: controller.taskList[index].taskCreated,
+                  description: controller.taskList[index].task,
+                  press: () {
+                    controller.deleteTask(controller.taskList[index]);
+                  },
+                ),
+              )),
       ),
       floatingActionButton: InkWell(
         onTap: () {

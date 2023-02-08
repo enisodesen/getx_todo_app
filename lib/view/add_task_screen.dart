@@ -30,6 +30,7 @@ class AddTaskPage extends StatelessWidget {
                 flex: 1,
               ),
               TextField(
+                controller: controller.textEditingController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(),
@@ -44,7 +45,10 @@ class AddTaskPage extends StatelessWidget {
                 height: 25,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  controller.addTask(
+                      controller.textEditingController.text, DateTime.now());
+                },
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
